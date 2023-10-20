@@ -3,7 +3,7 @@ import { Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { styles } from '../style.js';
 
-export default function Comanda() {
+export default function Comanda({navigation}) {
     return (
         <View style={styles.containerBetween}>
             <View style={styles.header}>
@@ -16,7 +16,7 @@ export default function Comanda() {
 
             <View>
                 <TextInput style={styles.input} placeholder="Comanda" />
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Produtos')}>
                     <Text style={styles.buttonText}>confirmar</Text>
                 </TouchableOpacity>
             </View>

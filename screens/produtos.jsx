@@ -3,6 +3,8 @@ import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 
 import { styles } from '../style.js';
 import CardProduto from '../components/card.js';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const produto = {
     "id": 1,
@@ -12,10 +14,20 @@ const produto = {
 }
 
 export default function Produtos() {
+    const [produtos, setProdutos] = useState([])
+
+    useEffect( () => {
+        axios.get("http://localhost:3000/produtos")
+          .then(resp => setProdutos(resp.data))
+    }, [] )
+
+
     return (
         <View style={styles.containerBetween}>
             <View style={styles.header}>
-                <MaterialIcons name="arrow-back" size={24} color="black" />
+                <TouchableOpacity>
+                    <MaterialIcons name="arrow-back" size={24} color="black" />
+                </TouchableOpacity>
 
                 <View style={styles.box}>
                     <Text>comanda</Text>
@@ -44,17 +56,7 @@ export default function Produtos() {
             <Text style={styles.subtitle}>Produtos</Text>
 
             <ScrollView style={styles.scroll}>
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
-                <CardProduto produto={produto} />
+                {produtos.map(p => <CardProduto key={p.id} produto={p}/> )}
                
             </ScrollView>
 

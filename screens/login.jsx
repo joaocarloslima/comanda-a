@@ -1,7 +1,7 @@
-import { Image, Text, TextInput, TouchableOpacity, View, ViewBase } from 'react-native';
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from '../style';
 
-export default function Login() {
+export default function Login({navigation}) {
     return (
         <View style={styles.container}>
             <Image style={styles.imagem} source={require('../assets/burguer.jpg')} />
@@ -9,7 +9,7 @@ export default function Login() {
             <Text style={styles.title}>Comanda</Text>
             <TextInput style={styles.input} placeholder='e-mail' />
             <TextInput style={styles.input} placeholder='senha' secureTextEntry />
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Comanda') }>
                 <Text style={styles.button}>entrar</Text>
             </TouchableOpacity>
             
